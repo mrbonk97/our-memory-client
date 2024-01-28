@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
-
 const ValidWrapper = () => {
   const [searchParams] = useSearchParams();
   const [validUrl, setValidUrl] = useState(false);
@@ -9,9 +8,8 @@ const ValidWrapper = () => {
   useEffect(() => {
     const validateUrl = async () => {
       const code = searchParams.get('code');
-      const result = await axios.post('/auth/validate-code?code=' + code);
+      const result = await axios.get('/api/auth/validate-code?code=' + code);
       setValidUrl(result.data.result);
-      console.log(result, code);
     };
 
     validateUrl();

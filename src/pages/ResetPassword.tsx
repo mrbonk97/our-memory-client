@@ -29,9 +29,10 @@ const ResetPassword = () => {
     }
 
     const code = searchParams.get('code');
-    const result = await axios.post('/auth/change-password?code=' + code, { password });
-    console.log(result);
-
+    const result = await axios.post('/api/auth/change-password', {
+      code,
+      password,
+    });
     if (result.data.resultCode === 'SUCCESS') navigate('/reset-password-finish');
   };
 

@@ -6,12 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/auth': {
-        target: 'https://www.our-memory.store/v2',
+      '/api': {
+        // target: 'https://api.our-memory.store/v2',
+        target: 'http://localhost:8080/v2',
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
-  base: '/our-memory-client',
 });
